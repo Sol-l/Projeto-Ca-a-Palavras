@@ -8,7 +8,8 @@ int main(void){
 
     int vetorzao[10][10];
     int i, j;
-    int numeroBusca, somarValPosicao=0;
+    int numeroBusca, somarValPosicao=0, salvarPosicaoi, salvarPosicaoj, parar;
+
 
     //inicializa o gerador de números
     srand(time(NULL));
@@ -35,10 +36,17 @@ int main(void){
         for(j=0; j<10; j++){
             //se o valor a ser buscado for igual ao valor armazenado na posição
             if(numeroBusca == vetorzao[i][j]){ 
+
+                //salva as posições que o número foi encontrado
+                salvarPosicaoi = i;
+                salvarPosicaoj = j;
+
+                //aqui o algortimo faz a soma do número com base no seu tamanho, 
+                //se for 3 então ele soma [3]+[x]+[y] = somarValPosicao
                 for(int k=0; k<numeroBusca; k++){
                     //faz a soma do numeroBusca com os número seguintes
-                    somarValPosicao += vetorzao[i][j+k]; 
-                }
+                    somarValPosicao += vetorzao[i][j+k];
+                }            
             }
         }
     }
@@ -46,7 +54,8 @@ int main(void){
     if(somarValPosicao == 0){
         printf("Numero nao encontrado na matriz");
     }else{
-        printf("O valor da soma eh: %d", somarValPosicao);
+        printf("Busca por: %d, resultado = %d\n", numeroBusca, somarValPosicao);
+        printf("Posicao na Matriz: %d%d", salvarPosicaoi, salvarPosicaoj);
     }
 
     return 0;
